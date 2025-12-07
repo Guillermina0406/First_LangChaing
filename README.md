@@ -21,4 +21,3 @@ El objetivo principal es demostrar cómo gestionar y estructurar las interaccion
 | **`get_completion()`** | Una función simple para realizar llamadas directas a la API de OpenAI (sin LangChain). |
 | **`ChatPromptTemplate`** | Clase clave de LangChain para definir mensajes y variables en el prompt. |
 | **`StructuredOutputParser`** | Clase esencial para definir un esquema de salida (JSON) y convertir la respuesta de texto del LLM en un objeto de Python usable (`dict`). |
---
