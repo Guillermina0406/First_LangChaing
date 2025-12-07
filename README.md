@@ -72,3 +72,21 @@ Este módulo se enfoca en la calidad y el mantenimiento de las aplicaciones de L
 * **Evaluación Asistida por LLM:** Se usa un **segundo LLM como juez** para calificar automáticamente la respuesta generada por la cadena de prueba contra la respuesta ideal, midiendo la **Corrección** y la **Fidelidad**.
 
 ---
+## 6. 🤖 Módulo de Agentes (*Agents*) (L6)
+
+Este módulo es la cúspide de la construcción con LangChain, presentando el LLM no como una herramienta de respuesta, sino como un **Motor de Razonamiento** capaz de decidir qué acciones tomar y qué herramientas utilizar para resolver tareas complejas de forma dinámica.
+
+| Componente | Función Principal | Rol en el Flujo de Trabajo |
+| :--- | :--- | :--- |
+| **Agente (LLM)** | Actúa como el controlador principal y el motor de toma de decisiones. | **Piensa** (*Thought*), **actúa** (*Action*), y **observa** (*Observation*). |
+| **Herramientas (*Tools*)** | Interfaces específicas para interactuar con datos externos (Web, bases de datos, código). | Proporcionan información fuera del conocimiento interno del LLM. |
+| **Tipo ReAct** | **`CHAT_ZERO_SHOT_REACT_DESCRIPTION`** | Es la estrategia de *prompting* que obliga al Agente a razonar antes de actuar. |
+| **Herramientas Personalizadas** | Funciones de Python decoradas con `@tool`. | Permite conectar el Agente a API, bases de datos o código local. |
+
+### Flujo de Razonamiento (Ciclo ReAct)
+
+El Agente resuelve las consultas iterativamente a través de un ciclo de tres pasos:
+
+1.  **Pensamiento (`Thought`):** El Agente determina la mejor estrategia o la información que necesita.
+2.  **Acción (`Action`):** El Agente selecciona la herramienta más adecuada (ej. DuckDuckGo, Wikipedia o una función personalizada).
+3.  **Observación (`Observation`):** El resultado de la herramienta se devuelve al Agente, que lo utiliza como nuevo contexto para su siguiente pensamiento.
